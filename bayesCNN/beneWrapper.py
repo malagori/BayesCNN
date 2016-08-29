@@ -1,7 +1,6 @@
 __author__ = "Mehmood Alam Khan"
 __email__  = "malagori@kth.se"
 __version__= "0.9"
-__license__ = "GPLv3"
 __credits__ = ["Mehmood Alam Khan", "Muhammed Abdel Aziz"]
 
 import os
@@ -79,4 +78,5 @@ class BeneWrapper(object):
             print ("Class: beneWrapper; Function: readBeneBnt();  Error: " + str(e))
 
         return optDag
+
 
