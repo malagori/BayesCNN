@@ -1,7 +1,7 @@
 __author__ = "Mehmood Alam Khan"
 __email__  = "malagori@kth.se"
 __version__= "0.9"
-__credits__ = ["Mehmood Alam Khan", "Muhammed Abdel Aziz"]
+__credits__ = ["Muhammed Abdel Aziz", "Mehmood Alam Khan"]
 
 
 from beneWrapper import BeneWrapper
