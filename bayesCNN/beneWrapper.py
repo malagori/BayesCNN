@@ -8,7 +8,15 @@ import sys
 import subprocess
 
 class BeneWrapper(object):
+
+    vdFile = None              # variable descriptor file
+    dataFile = None             # data file
+    score    = None             # default is 1.0 BDe score alpha parameter
+    outDirectory   = None  # path to output directory
+    totalVaiables = None
+
     def __init__(self, vdFile, dataFile, score, outDirectory, totalVaiables):
+
         self.vdFile = vdFile                # variable descriptor file
         self.dataFile = dataFile            # data file
         self.score = score                  # default is 1.0 BDe score alpha parameter
@@ -34,6 +42,7 @@ class BeneWrapper(object):
     def generateOptBnt(self):
         try:
             null = open("/dev/null")
+            print "dir: %s " %(self.outDirectory)
             beneStdOut= os.path.join(self.outDirectory, "bene.stdout")
             benePwd= self.which('data2net.sh')
 

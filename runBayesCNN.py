@@ -80,6 +80,10 @@ def main(argv):
  
     # call gui function
     vdFilePath, dataFilePath, alpha, outDir= gui(argv)
+    print "vd: %s " %(vdFilePath)
+    print "datafi: %s " %(dataFilePath)
+    print "alpha: %f " %(alpha)
+    print "dir: %s " %(outDir)
     
     # run the name workflow
     print "-->bayesCNN starts"

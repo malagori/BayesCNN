@@ -13,7 +13,7 @@ class MainWorkFlow(object):
     '''
     vdFile      = None
     dataFile    = None
-    outdir      = None
+    outDir      = None
     alpha       = None
     def __init__(self, vdFile, dataFile, alpha, outDir):
         '''
@@ -31,7 +31,6 @@ class MainWorkFlow(object):
         '''
         objDataReader= DataReader()
 
-
         # read vd File
         variableNames, cardinality= objDataReader.returnVarNamesAndCardinalities(self.vdFile)
 
@@ -39,7 +38,7 @@ class MainWorkFlow(object):
         totalVaiables= len(variableNames)
 
         # instantiate Benewrapper class
-        objBeneWraper= BeneWrapper(self.vdFile, self.dataFile, self.alpha, self.outdir, totalVaiables)
+        objBeneWraper= BeneWrapper(self.vdFile, self.dataFile, self.alpha, self.outDir, totalVaiables)
 
         # generate optimum BNT using bene
         objBeneWraper.generateOptBnt()
