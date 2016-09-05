@@ -2,7 +2,7 @@
 
 from setuptools import setup
 setup(
-    name='BayesInfer',
+    name='BayesCNN',
     version='0.1dev',
     author='Mohamed Abdel Aziz, Mehmood Alam Khan',
     author_email='mohamed.abdelaziz@ericsson.com, malagori@kth.se',

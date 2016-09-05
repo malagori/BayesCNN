@@ -14,7 +14,7 @@ class DataReader(object):
         '''
         pass
 
-    def returnVarNamesAndCardinalities(infile):
+    def returnVarNamesAndCardinalities(self, infile):
 
         tokens=[]
         cardinality=[]

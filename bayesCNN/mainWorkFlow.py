@@ -5,7 +5,7 @@ __credits__ = ["Muhammed Abdel Aziz", "Mehmood Alam Khan"]
 
 
 from beneWrapper import BeneWrapper
-from DataReader import DataReader
+from dataReader import DataReader
 
 class MainWorkFlow(object):
     '''

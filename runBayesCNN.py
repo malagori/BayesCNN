@@ -12,6 +12,7 @@ import time
 import tempfile
 from optparse import OptionParser
 from bayesCNN.randomSeed import RandomSeed
+from bayesCNN.mainWorkFlow import MainWorkFlow
 
 
 
@@ -38,8 +39,11 @@ def gui(argv):
                       action="store", type="string", dest="outDir",
                       help='Specify path to the output directory to store results files.')
     parser.add_option('-s', metavar='seed' ,
-                      action="store", type=int, dest="seed", 
+                      action="store", type="int", dest="seed",
                       help='Specify seed. default=121', default=121)
+    parser.add_option('-l', metavar='loadSeed',
+                        action='store' ,type="string", dest="loadSeed",
+                        help='Specify path to a file containing previous state (default=None)', default=None)
 
 
     (options, args) = parser.parse_args()
@@ -53,32 +57,33 @@ def gui(argv):
     seedNum         = options.seed
     # instantiating RandomSeed object
     rs=RandomSeed()
-        
-    if seedNum == None and seedFile == None:
+
+    if seedNum == None and options.loadSeed == None:
         seedNum= time.time()
-    elif seedNum != None and seedFile == None:
+    elif seedNum != None and options.loadSeed == None:
         rs.setInitialState(seedNum)
-    elif seedFile != None and seedNum == None:
-        state= rs.getSateFromFile(seedFile)
+    elif options.loadSeed != None and seedNum == None:
+        state= rs.getSateFromFile(options.loadSeed)
         rn.setstate(state)
 
-    with open(options.outDir+"/out.bayesccn."+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-h%H-m%M'))+".info", 'w') as wf:
+    with open(options.outDir+"/out.bayesccn."+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S'))+".info", 'w') as wf:
         wf.write("Directory: %s\n" %(options.outDir))
         wf.write("Initial Seed: %d\n" %(seedNum))
         wf.write("VD File Path: %s\n" %(options.vdFilePath))
         wf.write("Data File Path: %s\n" %(options.dataFilePath))
         wf.write("Alpha : %s\n" %(options.alpha))
-        wf.write("TimeStamp : %s\n" %(options.dataFilePath))
-    
+        wf.write("Load Seed File : %s\n" %(options.loadSeed))
+        wf.write("TimeStamp : %s\n" %(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S'))))
+    return options.vdFilePath, options.dataFilePath, options.alpha, options.outDir
 
 def main(argv):
  
     # call gui function
-    gui(argv)
+    vdFilePath, dataFilePath, alpha, outDir= gui(argv)
     
     # run the name workflow
     print "-->bayesCNN starts"
-    objMainWorkFlow= MainWorkFlow(options.vdFilePath, options.dataFilePath, options.alpha, options.outDir)
+    objMainWorkFlow= MainWorkFlow(vdFilePath, dataFilePath, alpha, outDir)
     objMainWorkFlow.runWorkFlow()
     print "-->bayesCNN ends"
 
