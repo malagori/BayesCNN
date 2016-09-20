@@ -32,10 +32,10 @@ class MainWorkFlow(object):
         objDataReader= DataReader()
 
         # read vd File
-        variableNames, cardinality= objDataReader.returnVarNamesAndCardinalities(self.vdFile)
+        objDataReader.returnVarNamesAndCardinalities(self.vdFile)
 
         # total number of variables
-        totalVaiables= len(variableNames)
+        totalVaiables= len(objDataReader.getVariablNames())
 
         # instantiate Benewrapper class
         objBeneWraper= BeneWrapper(self.vdFile, self.dataFile, self.alpha, self.outDir, totalVaiables)
